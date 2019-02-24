@@ -1,6 +1,7 @@
 import contextlib
-import sys
+import re
 
+import pandas
 import pronto
 # on another CPU machine
 from bert_serving.client import BertClient
@@ -9,9 +10,13 @@ from bert_serving.client import BertClient
 bc = BertClient(ip='86.17.97.132')  # ip address of the GPU machine
 
 hpo_terms_file = 'ontologies/hp.obo'
+snomed_terms_file = 'ontologies/snomed_terms.tab'
+
+# re to extract snomed IDs from obo serialisations of HPO terms
+snomed_id_finder = r'SNOMEDCT_US:(\d*)(?:\n|$)'
 
 
-def load_hpo_term_names():
+def load_hpo_term():
     hpo = pronto.Ontology(hpo_terms_file)
     max_hpo_id = 3000079
 
@@ -21,6 +26,16 @@ def load_hpo_term_names():
             terms[hpo_id] = hpo[f"HP:{hpo_id:07d}"]
 
     return terms
+
+
+def load_snomed_terms():
+    snomed_terms_df = pandas.read_csv(snomed_terms_file, sep='\t')
+
+    snomed_terms = {}
+    for row in snomed_terms_df.itertuples():
+        snomed_terms[int(getattr(row, 'db_id'))] = getattr(row, 'name')
+
+    return snomed_terms
 
 
 def build_vec_file(hpo_terms, save_path):
@@ -44,9 +59,21 @@ def build_vec_file(hpo_terms, save_path):
 
 
 def main():
-    hpo_terms = load_hpo_term_names()
+    hpo_terms = load_hpo_term()
+    snomed_terms = load_snomed_terms()
 
-    build_vec_file(hpo_terms=hpo_terms, save_path='hpo.vec')
+    hpo_to_snomed_matches = {}
+
+    for hpo_id, term in hpo_terms.items():
+        serialised_term = term.obo
+
+        match = re.search(snomed_id_finder, serialised_term)
+        if match:
+            hpo_to_snomed_matches
+            print(match.group(1))
+
+
+    # build_vec_file(hpo_terms=hpo_terms, save_path='hpo.vec')
 
 
 if __name__ == '__main__':
