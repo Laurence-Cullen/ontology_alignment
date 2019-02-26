@@ -14,9 +14,10 @@ def load_vec_file(path):
     )
 
 
-def main():
-    hpo_vectors = load_vec_file('vectors/hpo_name_bert_vanilla_uncased_large.vec')
-    snomed_vectors = load_vec_file('vectors/snomed_name_bert_vanilla_uncased_large.vec')
+def score_vector_pair(hpo_vec_path, snomed_vec_path):
+
+    hpo_vectors = load_vec_file(hpo_vec_path)
+    snomed_vectors = load_vec_file(snomed_vec_path)
 
     # print(hpo_vectors.to_numpy())
     # print(snomed_vectors)
@@ -58,6 +59,13 @@ def main():
 
     print(f'top {top_similarities_to_check} similar hpo terms included the correct'
           f' term {100 * correct_matches / len(snomed_indices):.2f}% of the time')
+
+
+def main():
+    score_vector_pair(
+        hpo_vec_path='vectors/hpo_name_bert_vanilla_uncased_large.vec',
+        snomed_vec_path='vectors/snomed_name_bert_vanilla_uncased_large.vec'
+    )
 
 
 if __name__ == '__main__':

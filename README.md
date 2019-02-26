@@ -4,7 +4,7 @@ Experiments aligning HPO and SNOMED medical ontologies
 GPU machine IP: 86.17.97.132
 
 ## Resources
-I will be using the recently released BERT sentence embeddings from Google
+I will be using the recently released BERT sentence embedding model from Google
 to encode the names, synonyms and descriptions of terms to vectors of the
 same length.
 
@@ -38,3 +38,5 @@ Third experiment is to see if fine tuning the BERT model on pubmed
 or another large medical text corpus improves the power of the sentence
 embeddings. Fine tuning will need to be done on a cloud TPU due to time
 and memory constraints.
+
+Corpus to fine tune on acquired from the [PMC open access archives](https://www.ncbi.nlm.nih.gov/pmc/tools/ftp/)
