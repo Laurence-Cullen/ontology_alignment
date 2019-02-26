@@ -7,6 +7,7 @@ SAVE_DIR="medical_corpuses/"
 declare -a archives=(
     "comm_use.0-9A-B"
     "comm_use.C-H"
+    "comm_use.I-N"
     "comm_use.O-Z"
     "non_comm_use.0-9A-B"
     "non_comm_use.C-H"
@@ -17,6 +18,4 @@ declare -a archives=(
 for archive in "${archives[@]}"
 do
     wget ${BASE_URL}${archive}${EXTENSION}
-    tar xvzf ${archive}${EXTENSION} "${SAVE_DIR}${archive}"
-#    rm ${archive}${EXTENSION}
 done

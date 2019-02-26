@@ -5,7 +5,9 @@ from bert_serving.client import BertClient
 from data_loading import load_hpo_terms, load_snomed_terms, build_snomed_hpo_map, build_hpo_snomed_map
 
 # connecting to remote bert server
-bc = BertClient(ip='86.17.97.132')  # ip address of the GPU machine
+# bc = BertClient(ip='86.17.97.132')  # ip address of the GPU machine
+bc = BertClient(ip='192.168.0.34')  # local ip address of the GPU machine
+
 
 hpo_terms_file = 'ontologies/hp.obo'
 snomed_terms_file = 'ontologies/snomed_terms.tab'
