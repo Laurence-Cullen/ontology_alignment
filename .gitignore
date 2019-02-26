@@ -1,2 +1,5 @@
+__pycache__
 .DS_Store
 .idea*
+bert_models
+vectors
