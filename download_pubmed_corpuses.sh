@@ -17,7 +17,7 @@ declare -a archives=(
 for archive in "${archives[@]}"
 do
     wget ${BASE_URL}${archive}${EXTENSION}
-    unzip ${archive}${EXTENSION}
+    tar xvzf ${archive}${EXTENSION}
     rm ${archive}${EXTENSION}
     mv "${archive}.txt" ${SAVE_DIR}
 done
