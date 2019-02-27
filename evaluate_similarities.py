@@ -75,7 +75,7 @@ def score_vector_pair(hpo_vec_path, snomed_vec_path):
             print('Failed match...')
             print(f'SNOMED {snomed_code}:', rich_snomed_terms[str(snomed_code)])
             print(f'most similar HPO {similar_hpo_codes[0]}:', rich_hpo_terms[f"{similar_hpo_codes[0]:07d}"])
-            print(f'actual HPO {snomed_hpo_map[str(snomed_code)]}:', rich_hpo_terms[f"{snomed_hpo_map[str(snomed_code)]:07d}"], '\n')
+            print(f'actual HPO {snomed_hpo_map[str(snomed_code)]}:', rich_hpo_terms[snomed_hpo_map[str(snomed_code)]], '\n')
 
         snomed_to_similar_hpo_terms[snomed_code] = similar_hpo_codes
 
