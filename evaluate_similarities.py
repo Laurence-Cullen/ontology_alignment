@@ -49,9 +49,6 @@ def score_vector_pair(hpo_vec_path, snomed_vec_path):
         snomed_code = snomed_indices[i]
         similar_hpo_codes = hbo_indices[max_indices]
 
-        # print('actual hpo code', snomed_hpo_map[str(snomed_code)])
-        # print('similar hpo codes', list(similar_hpo_codes))
-
         if int(snomed_hpo_map[str(snomed_code)]) in list(similar_hpo_codes):
             correct_matches += 1
 
@@ -63,8 +60,8 @@ def score_vector_pair(hpo_vec_path, snomed_vec_path):
 
 def main():
     score_vector_pair(
-        hpo_vec_path='vectors/hpo_name_bert_vanilla_uncased_large.vec',
-        snomed_vec_path='vectors/snomed_name_bert_vanilla_uncased_large.vec'
+        hpo_vec_path='vectors/hpo_rich_bert_vanilla_uncased_large.vec',
+        snomed_vec_path='vectors/snomed_rich_bert_vanilla_uncased_large.vec'
     )
 
 

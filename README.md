@@ -18,20 +18,36 @@ so I could hit it every time I wanted to get a sentence vectorised.
 
 [BERT as a service](https://github.com/hanxiao/bert-as-service)
 
+To fine tune the BERT model I am attempting to use a full text archive
+of PubMed from their [open access portal](https://www.ncbi.nlm.nih.gov/pmc/tools/ftp/)
+as a training corpus.
+
 
 ## Naive attempt
 Using the large, uncased english BERT model without fine tuning
 to create sentence embeddings from just the names of both
-snomed and and hpo terms.
+SNOMED and and HPO terms.
 
-First attempt at mapping snomed to hpo terms managed 
-to get the correct hpo term in the top 10 most cosine similar
+First attempt at mapping SNOMED to HPO terms managed 
+to get the correct HPO term in the top 10 most cosine similar
 terms 35.7% of the time.
 
 ## Averaging vectors for synonyms
 Second experiment is to see if averaging sentence embeddings
 of the name, description and synonyms of terms creates stronger link.
 
+In a first experiment in this strand only the HPO term vectors were
+created from averaged vectors of name, description and synonyms.
+When now compared to the name based SNOMED vectors the top 10 score
+rose to 50.7%.
+
+After building rich SNOMED vectors and comparing them to the original
+name based HPO vectors a top 10 accuracy of 63.6% is achieved.
+
+Now, combing rich embeddings of HPO and SNOMED terms a top 10 similarity
+score of 79.5% is achieved. When looking only at the top 3 most similar
+HPO terms to a SNOMED term the accuracy only falls to 71.27%. 58.4% of the
+time the most similar HPO term is correct.
 
 ## Fine tune model
 Third experiment is to see if fine tuning the BERT model on pubmed
