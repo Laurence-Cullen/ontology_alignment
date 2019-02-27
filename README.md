@@ -49,6 +49,8 @@ score of 79.5% is achieved. When looking only at the top 3 most similar
 HPO terms to a SNOMED term the accuracy only falls to 71.27%. 58.4% of the
 time the most similar HPO term is correct.
 
+Other ideas to try in this vein include averaging in vectors of parent categories.
+
 ## Fine tune model
 Third experiment is to see if fine tuning the BERT model on pubmed
 or another large medical text corpus improves the power of the sentence

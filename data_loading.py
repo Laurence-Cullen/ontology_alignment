@@ -41,7 +41,7 @@ def load_rich_hpo_terms():
 
         hpo_terms_list.append([hpo_id, descriptions])
 
-    return hpo_terms
+    return hpo_terms_list
 
 
 def load_snomed_terms():
@@ -60,12 +60,12 @@ def load_rich_snomed_terms(snomed_terms):
     snomed_terms_list = []
     for db_id, name in snomed_terms.items():
         descriptions = [name]
-        print(db_id)
+        # print(db_id)
 
         for synonym_row in snomed_synonyms.loc[snomed_synonyms['db_to_id'] == int(db_id)].itertuples():
             # print(synonym_row)
             # print(db_id)
-            print(getattr(synonym_row, 'name'))
+            # print(getattr(synonym_row, 'name'))
             descriptions.append(getattr(synonym_row, 'name'))
 
         snomed_terms_list.append([db_id, descriptions])
