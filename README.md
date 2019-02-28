@@ -1,7 +1,23 @@
-# ontology_alignment
-Experiments aligning HPO and SNOMED medical ontologies
+# SNOMED to HPO Ontology alignment
+Experiments aligning HPO and SNOMED medical ontologies to be able to map
+from SNOMED terms to the HPO term which best matches it.
 
-GPU machine IP: 86.17.97.132
+## Background
+[SNOMED](https://termbrowser.nhs.uk/?) is a large medical ontology for
+general medical use that can verge into the sprawling with a very large
+number of terms and quite a lot of repetition. For genetic disease
+community the alternative HPO ontology has become popular, it is tightly
+maintained and tries to stay minimalistic and focused on 
+
+## Motivation
+In NLP systems attempting to draw insights from medical records, such as extracting
+a set of symptoms, may be focused on a particular ontology. However, seeing as there
+are a variety of ontologies in common use systems can be made more powerful and general
+if they are able to include information from multiple ontologies.
+
+Between ontologies there are some explicit mappings of terms but only in the minority
+of cases. Therefore, it is useful to build a system which is able to automatically
+account for cases without explicit term linking.
 
 ## Resources
 I will be using the recently released BERT sentence embedding model from Google
@@ -49,7 +65,14 @@ score of 79.5% is achieved. When looking only at the top 3 most similar
 HPO terms to a SNOMED term the accuracy only falls to 71.27%. 58.4% of the
 time the most similar HPO term is correct.
 
-Other ideas to try in this vein include averaging in vectors of parent categories.
+Other ideas to try in this vein include averaging in vectors of parent categories
+or building multiple vectors for each HPO and SNOMED term including embeddings
+of the parent classes of the respective terms to include more information
+about the hierarchy of terms.
+
+Seeing as SNOMED terms can often be degenerate it could be useful to average
+hierarchy embedding of all degenerate terms to create a wider view of the context
+of a term.
 
 ## Fine tune model
 Third experiment is to see if fine tuning the BERT model on pubmed
