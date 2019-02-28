@@ -2,6 +2,13 @@
 Experiments aligning HPO and SNOMED medical ontologies to be able to map
 from SNOMED terms to the HPO term which best matches it.
 
+## Built Embeddings
+*   **[`HPO term names`](https://storage.googleapis.com/bert-ontology/vectors/hpo_name_bert_vanilla_uncased_large.vec)**
+*   **[`HPO term names + synonyms + description`](https://storage.googleapis.com/bert-ontology/vectors/hpo_rich_bert_vanilla_uncased_large.vec)**
+*   **[`SNOMED term names`](https://storage.googleapis.com/bert-ontology/vectors/snomed_name_bert_vanilla_uncased_large.vec)**
+*   **[`SNOMED term names + synonyms + description`](https://storage.googleapis.com/bert-ontology/vectors/snomed_rich_bert_vanilla_uncased_large.vec)**
+
+
 ## Background
 [SNOMED](https://termbrowser.nhs.uk/?) is a large medical ontology for
 general medical use that can verge into the sprawling with a very large
